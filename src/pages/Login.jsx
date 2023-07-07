@@ -6,7 +6,9 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [English, setEnglish] = useState(false);
   const history = useNavigate();
+  const idioma = localStorage.getItem("language");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -19,14 +21,23 @@ const Login = () => {
           password,
         }
       );
-      console.log(loggedIn);
       if (loggedIn) {
         localStorage.setItem("token", loggedIn.data.token);
         history("/admin");
       }
     } catch (error) {
       console.log(error);
-      alert("Credenciales incorrectas");
+      alert(
+        idioma == "english" ? "Wrong credentials" : "Credenciales incorrectas"
+      );
+    }
+  };
+  const onChangeLanguage = () => {
+    setEnglish(!English);
+    if (!English) {
+      localStorage.setItem("language", "english");
+    } else {
+      localStorage.removeItem("language");
     }
   };
 
@@ -40,9 +51,11 @@ const Login = () => {
         alt="Logo"
       />
       <Form onSubmit={handleSubmit}>
-        <h1>Inicio de sesión</h1>
+        <h1>{idioma == "english" ? "signin" : "Incio de sesión"}</h1>
         <Form.Group controlId="formUsername">
-          <Form.Label>Nombre de usuario</Form.Label>
+          <Form.Label>
+            {idioma == "english" ? "Username" : "usuario"}
+          </Form.Label>
           <Form.Control
             type="text"
             value={username}
@@ -51,7 +64,9 @@ const Login = () => {
         </Form.Group>
 
         <Form.Group controlId="formPassword">
-          <Form.Label>Contraseña</Form.Label>
+          <Form.Label>
+            {idioma == "english" ? "Password" : "Contraseña"}
+          </Form.Label>
           <Form.Control
             type="password"
             value={password}
@@ -59,8 +74,17 @@ const Login = () => {
           />
         </Form.Group>
 
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+          <Form.Check
+            type="checkbox"
+            label="English"
+            value={English}
+            onChange={onChangeLanguage}
+          />
+        </Form.Group>
+
         <Button className="mt-4" variant="primary" type="submit">
-          Iniciar sesión
+          {idioma == "english" ? "GO!" : "Iniciar sesión"}
         </Button>
       </Form>
     </Container>

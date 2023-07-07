@@ -9,6 +9,7 @@ const Admin = () => {
   const [Loading, setLoading] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
   const history = useNavigate();
+  const idioma = localStorage.getItem("language");
 
   useEffect(() => {
     const isAuthenticated = localStorage.getItem("token");
@@ -60,7 +61,9 @@ const Admin = () => {
           className="d-inline-block align-top"
           alt="Logo"
         />
-        <h1>Lista de participantes</h1>
+        <h1>
+          {idioma === "english" ? "Assistants list" : "Lista de participantes"}
+        </h1>
         <div
           style={{
             display: "flex",
@@ -68,14 +71,20 @@ const Admin = () => {
           }}
         >
           <Button onClick={() => window.print()} className="mb-3 mr-5">
-            Guardar
+            {idioma === "english" ? "Save" : "Guardar"}
           </Button>
           <Button
             variant="danger"
             onClick={() => onClearDatabase()}
             className="mb-3"
           >
-            {Loading ? "Limpiando..." : "Limpiar participantes"}
+            {Loading
+              ? idioma == "english"
+                ? "cleaning"
+                : "Limpiado"
+              : idioma === "english"
+              ? "clear participants"
+              : "Limpiar participantes"}
           </Button>
         </div>
         <ListGroup>
@@ -83,11 +92,19 @@ const Admin = () => {
             <ListGroup.Item key={user._id}>
               <strong># :</strong> {index}
               <br />
-              <strong>Nombre:</strong> {user.nombre_completo}
+              <strong>{idioma == "english" ? "Name" : "Nombre"}:</strong>{" "}
+              {user.nombre_completo}
               <br />
-              <strong>Teléfono:</strong> {user.telefono}
+              <strong>
+                {idioma == "english" ? "Phone" : "Teléfono"}:
+              </strong>{" "}
+              {user.telefono}
               <br />
-              <strong>Correo:</strong> {user.correo}
+              <strong>{idioma == "english" ? "email" : "Correo"}:</strong>{" "}
+              {user.correo}
+              <br />
+              <strong>{idioma == "english" ? "Ticket" : "Boleto"}:</strong>{" "}
+              {user.numero_boleto}
             </ListGroup.Item>
           ))}
         </ListGroup>
@@ -103,7 +120,9 @@ const Admin = () => {
         className="d-inline-block align-top"
         alt="Logo"
       />
-      <h1>Lista de participantes</h1>
+      <h1>
+        {idioma === "english" ? "Assistants list" : "Lista de participantes"}
+      </h1>
       <div
         style={{
           display: "flex",
@@ -111,24 +130,30 @@ const Admin = () => {
         }}
       >
         <Button onClick={() => window.print()} className="mb-3 mr-5">
-          Guardar
+          {idioma === "english" ? "Save" : "Guardar"}
         </Button>
         <Button
           variant="danger"
           onClick={() => onClearDatabase()}
           className="mb-3"
         >
-          {Loading ? "Limpiando..." : "Limpiar participantes"}
+          {Loading
+            ? idioma == "english"
+              ? "cleaning"
+              : "Limpiado"
+            : idioma === "english"
+            ? "clear participants"
+            : "Limpiar participantes"}
         </Button>
       </div>
       <Table striped bordered responsive>
         <thead>
           <tr>
             <th>#</th>
-            <th>Nombre</th>
-            <th>Teléfono</th>
-            <th>Correo</th>
-            <th>Boleto</th>
+            <th>{idioma == "english" ? "Name" : "Nombre"}</th>
+            <th>{idioma == "english" ? "Phone" : "Teléfono"}</th>
+            <th>{idioma == "english" ? "Phone" : "Teléfono"}:</th>
+            <th>{idioma == "english" ? "Ticket" : "Boleto"}</th>
           </tr>
         </thead>
         <tbody>

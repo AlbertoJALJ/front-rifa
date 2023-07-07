@@ -8,11 +8,14 @@ const CreateUser = () => {
   const [email, setEmail] = useState("");
   const [ticketNumber, setTicketNumber] = useState("");
   const [showTicket, setShowTicket] = useState(false);
+  const idioma = localStorage.getItem("language");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (localStorage.getItem("registrado")) {
-      alert("Ya te registraste");
+      alert(
+        idioma == "english" ? "You're already registered" : "Ya te registraste"
+      );
     }
 
     try {
@@ -42,7 +45,7 @@ const CreateUser = () => {
 
   return (
     <div>
-      <h1>Registrar participación</h1>
+      <h1>{idioma == "english" ? "Signup" : "Registrar participación"}</h1>
       {!showTicket ? (
         <Form onSubmit={handleSubmit}>
           <img
@@ -53,7 +56,7 @@ const CreateUser = () => {
             alt="Logo"
           />
           <Form.Group controlId="formFullName">
-            <Form.Label>Nombre completo:</Form.Label>
+            <Form.Label>{idioma == "english" ? "Name" : "Nombre"}:</Form.Label>
             <Form.Control
               type="text"
               value={fullName}
@@ -62,7 +65,9 @@ const CreateUser = () => {
           </Form.Group>
 
           <Form.Group controlId="formPhone">
-            <Form.Label>Teléfono:</Form.Label>
+            <Form.Label>
+              {idioma == "english" ? "Phone" : "Teléfono"}:
+            </Form.Label>
             <Form.Control
               type="text"
               value={phone}
@@ -71,7 +76,7 @@ const CreateUser = () => {
           </Form.Group>
 
           <Form.Group controlId="formEmail">
-            <Form.Label>Correo:</Form.Label>
+            <Form.Label>{idioma == "english" ? "email" : "Correo"}:</Form.Label>
             <Form.Control
               type="email"
               value={email}
@@ -92,9 +97,12 @@ const CreateUser = () => {
             className="d-inline-block align-top"
             alt="Logo"
           />
-          <h1>Tu número de boleto asignado es: {ticketNumber}</h1>
+          <h1>
+            {idioma == "english" ? "Your ticket is" : "Tu boleto asignado es"}:{" "}
+            {ticketNumber}
+          </h1>
           <Button variant="primary" onClick={handlePrintTicket}>
-            Guardar Boleto
+            {idioma == "english" ? "Save Ticket" : "Guardar boleto"}
           </Button>
         </div>
       )}

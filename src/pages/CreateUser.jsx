@@ -17,7 +17,7 @@ const CreateUser = () => {
 
     try {
       const response = await axios.post(
-        "https://backend-rifa.onrender.com//users/",
+        "https://backend-rifa.onrender.com/users/",
         {
           nombre_completo: fullName,
           telefono: phone,

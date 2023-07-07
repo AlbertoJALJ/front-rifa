@@ -13,7 +13,7 @@ const Login = () => {
 
     try {
       const loggedIn = await axios.post(
-        "https://backend-rifa.onrender.com//users/login",
+        "https://backend-rifa.onrender.com/users/login",
         {
           username,
           password,

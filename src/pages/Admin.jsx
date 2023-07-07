@@ -19,7 +19,7 @@ const Admin = () => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(
-          "https://backend-rifa.onrender.com//users/"
+          "https://backend-rifa.onrender.com/users/"
         );
         setUsers(response.data);
       } catch (error) {

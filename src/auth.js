@@ -10,7 +10,7 @@ export const checkUserAuthentication = async () => {
 
     // Ejemplo de verificación de token utilizando una llamada al backend con Axios
     axios
-      .get("https://backend-rifa.onrender.com//users/check-auth", {
+      .get("https://backend-rifa.onrender.com/users/check-auth", {
         headers: { token },
       })
       .then((response) => {

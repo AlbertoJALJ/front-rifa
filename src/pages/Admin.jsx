@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
   const [users, setUsers] = useState([]);
+  const [Loading, setLoading] = useState(false);
   const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
   const history = useNavigate();
 
@@ -36,6 +37,19 @@ const Admin = () => {
     };
   }, []);
 
+  const onClearDatabase = async () => {
+    setLoading(true);
+    const cleared = await axios.get(
+      "https://backend-rifa.onrender.com/users/clear"
+    );
+    console.log(cleared);
+    if (cleared.data) {
+      setLoading(false);
+      alert("Borrado correctamente");
+      setUsers([]);
+    }
+  };
+
   if (isMobile) {
     return (
       <div>
@@ -47,9 +61,23 @@ const Admin = () => {
           alt="Logo"
         />
         <h1>Lista de participantes</h1>
-        <Button onClick={() => window.print()} className="mb-3">
-          Guardar
-        </Button>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <Button onClick={() => window.print()} className="mb-3 mr-5">
+            Guardar
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => onClearDatabase()}
+            className="mb-3"
+          >
+            {Loading ? "Limpiando..." : "Limpiar participantes"}
+          </Button>
+        </div>
         <ListGroup>
           {users.map((user, index) => (
             <ListGroup.Item key={user._id}>
@@ -76,9 +104,23 @@ const Admin = () => {
         alt="Logo"
       />
       <h1>Lista de participantes</h1>
-      <Button onClick={() => window.print()} className="mb-3">
-        Guardar
-      </Button>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-evenly",
+        }}
+      >
+        <Button onClick={() => window.print()} className="mb-3 mr-5">
+          Guardar
+        </Button>
+        <Button
+          variant="danger"
+          onClick={() => onClearDatabase()}
+          className="mb-3"
+        >
+          {Loading ? "Limpiando..." : "Limpiar participantes"}
+        </Button>
+      </div>
       <Table striped bordered responsive>
         <thead>
           <tr>

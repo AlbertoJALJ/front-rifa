@@ -8,6 +8,7 @@ const CreateUser = () => {
   const [email, setEmail] = useState("");
   const [ticketNumber, setTicketNumber] = useState("");
   const [showTicket, setShowTicket] = useState(false);
+  const [English, setEnglish] = useState(false);
   const idioma = localStorage.getItem("language");
 
   const handleSubmit = async (event) => {
@@ -41,6 +42,15 @@ const CreateUser = () => {
   const handlePrintTicket = () => {
     // Lógica para imprimir el boleto usando la API nativa del navegador
     window.print();
+  };
+
+  const onChangeLanguage = () => {
+    setEnglish(!English);
+    if (!English) {
+      localStorage.setItem("language", "english");
+    } else {
+      localStorage.removeItem("language");
+    }
   };
 
   return (
@@ -83,6 +93,18 @@ const CreateUser = () => {
               onChange={(event) => setEmail(event.target.value)}
             />
           </Form.Group>
+
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Form.Group className="mb-3 mt-3 " controlId="formBasicCheckbox">
+              <Form.Check
+                type="checkbox"
+                label="English"
+                value={English}
+                onChange={onChangeLanguage}
+                size={"large"}
+              />
+            </Form.Group>
+          </div>
 
           <Button variant="primary" type="submit" className="mt-3">
             Enviar

@@ -32,6 +32,7 @@ const Login = () => {
       );
     }
   };
+  
   const onChangeLanguage = () => {
     setEnglish(!English);
     if (!English) {
@@ -74,14 +75,17 @@ const Login = () => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check
-            type="checkbox"
-            label="English"
-            value={English}
-            onChange={onChangeLanguage}
-          />
-        </Form.Group>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Form.Group className="mb-3 mt-3 " controlId="formBasicCheckbox">
+            <Form.Check
+              type="checkbox"
+              label="English"
+              value={English}
+              onChange={onChangeLanguage}
+              size={"large"}
+            />
+          </Form.Group>
+        </div>
 
         <Button className="mt-4" variant="primary" type="submit">
           {idioma == "english" ? "GO!" : "Iniciar sesión"}

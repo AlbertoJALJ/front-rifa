@@ -4,19 +4,16 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 const Layout = (props) => {
   return (
     <div>
-      <Navbar bg="light" expand="md">
+      <Navbar expand="md">
         <Container>
           <Navbar.Brand href="/">
-            <img
-              src="/logo.webp"
-              width="40"
-              height="40"
-              className="d-inline-block align-top"
-              alt="Logo"
-            />
+            <h2>AAMCO</h2>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Collapse
+            id="basic-navbar-nav"
+            className="justify-content-end"
+          >
             <Nav className="mr-auto "></Nav>
             <Nav>
               <Nav.Link href="/admin">Ingresar</Nav.Link>

@@ -39,6 +39,14 @@ const Admin = () => {
   if (isMobile) {
     return (
       <div>
+        <img
+          src="/logo.webp"
+          width="200"
+          height="200"
+          className="d-inline-block align-top"
+          alt="Logo"
+        />
+        <h1>Lista de participantes</h1>
         <Button onClick={() => window.print()} className="mb-3">
           Guardar
         </Button>
@@ -60,13 +68,21 @@ const Admin = () => {
   }
   return (
     <div>
+      <img
+        src="/logo.webp"
+        width="200"
+        height="200"
+        className="d-inline-block align-top"
+        alt="Logo"
+      />
+      <h1>Lista de participantes</h1>
       <Button onClick={() => window.print()} className="mb-3">
         Guardar
       </Button>
       <Table striped bordered responsive>
         <thead>
           <tr>
-            <th>ID</th>
+            <th>#</th>
             <th>Nombre</th>
             <th>Teléfono</th>
             <th>Correo</th>

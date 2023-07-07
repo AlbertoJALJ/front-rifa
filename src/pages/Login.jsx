@@ -32,12 +32,19 @@ const Login = () => {
 
   return (
     <Container>
+      <img
+        src="/logo.webp"
+        width="200"
+        height="200"
+        className="d-inline-block align-top"
+        alt="Logo"
+      />
       <Form onSubmit={handleSubmit}>
+        <h1>Inicio de sesión</h1>
         <Form.Group controlId="formUsername">
           <Form.Label>Nombre de usuario</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Ingresa tu nombre de usuario"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
@@ -47,7 +54,6 @@ const Login = () => {
           <Form.Label>Contraseña</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Ingresa tu contraseña"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />

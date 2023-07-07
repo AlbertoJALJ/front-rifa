@@ -42,8 +42,16 @@ const CreateUser = () => {
 
   return (
     <div>
+      <h1>Registrar participación</h1>
       {!showTicket ? (
         <Form onSubmit={handleSubmit}>
+          <img
+            src="/logo.webp"
+            width="200"
+            height="200"
+            className="d-inline-block align-top"
+            alt="Logo"
+          />
           <Form.Group controlId="formFullName">
             <Form.Label>Nombre completo:</Form.Label>
             <Form.Control
@@ -77,9 +85,16 @@ const CreateUser = () => {
         </Form>
       ) : (
         <div>
-          <p>Tu número de boleto asignado es: {ticketNumber}</p>
+          <img
+            src="/logo.webp"
+            width="200"
+            height="200"
+            className="d-inline-block align-top"
+            alt="Logo"
+          />
+          <h1>Tu número de boleto asignado es: {ticketNumber}</h1>
           <Button variant="primary" onClick={handlePrintTicket}>
-            Imprimir Boleto
+            Guardar Boleto
           </Button>
         </div>
       )}

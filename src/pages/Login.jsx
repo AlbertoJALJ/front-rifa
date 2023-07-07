@@ -12,10 +12,13 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const loggedIn = await axios.post("http://localhost:3000/users/login", {
-        username,
-        password,
-      });
+      const loggedIn = await axios.post(
+        "https://backend-rifa.onrender.com//users/login",
+        {
+          username,
+          password,
+        }
+      );
       console.log(loggedIn);
       if (loggedIn) {
         localStorage.setItem("token", loggedIn.data.token);

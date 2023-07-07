@@ -16,11 +16,14 @@ const CreateUser = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/users/", {
-        nombre_completo: fullName,
-        telefono: phone,
-        correo: email,
-      });
+      const response = await axios.post(
+        "https://backend-rifa.onrender.com//users/",
+        {
+          nombre_completo: fullName,
+          telefono: phone,
+          correo: email,
+        }
+      );
 
       const { numero } = response.data;
 
